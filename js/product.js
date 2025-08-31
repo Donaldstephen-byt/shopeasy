@@ -24,21 +24,17 @@ async function loadProduct() {
     `;
   }
 
-// Toggle add/remove product from cart
+
 function toggleCart(id, btn) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   if (cart.includes(id)) {
-    // remove product
     cart = cart.filter(item => item !== id);
-    // update button instantly
     btn.classList.remove("bg-red-500", "hover:bg-red-600");
     btn.classList.add("bg-black", "hover:bg-black/80");
     btn.innerHTML = `<i data-lucide="shopping-cart" class="mr-2"></i> Add to Cart`;
   } else {
-    // add product
     cart.push(id);
-    // update button instantly
     btn.classList.remove("bg-black", "hover:bg-black/80");
     btn.classList.add("bg-red-500", "hover:bg-red-600");
     btn.innerHTML = `<i data-lucide="shopping-cart" class="mr-2"></i> Remove from Cart`;

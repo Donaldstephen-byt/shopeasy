@@ -11,7 +11,7 @@
   <body>
     <nav class="bg-white shadow fixed w-full z-50">
       <div class="max-w-6xl mx-auto flex items-center justify-between p-4">
-        <!-- Logo -->
+
         <a
           class="flex items-center gap-2 text-black font-bold text-xl"
           href="./index.html"
@@ -19,23 +19,21 @@
           <i data-lucide="store"></i> ShopEasy
         </a>
 
-        <!-- Desktop Menu -->
         <div class="hidden md:flex items-center gap-6 text-gray-700">
           <a href="./index.html" class="flex items-center gap-1 hover:font-bold"
             ><i></i> Home</a
           >
-          <a href="#" class="flex items-center gap-1 hover:font-bold"
+          <a href="./shop.html" class="flex items-center gap-1 hover:font-bold"
             ><i></i> Shop</a
           >
-          <a href="#" class="flex items-center gap-1 hover:font-bold"
+          <a href="./about.html" class="flex items-center gap-1 hover:font-bold"
             ><i></i> About</a
           >
-          <a href="#" class="flex items-center gap-1 hover:font-bold"
+          <a href="./contact.html" class="flex items-center gap-1 hover:font-bold"
             ><i></i> Contact</a
           >
         </div>
 
-        <!-- Cart -->
         <a href="./cart.html" class="relative ms-auto lg:ms-0 mr-8">
           <i data-lucide="shopping-cart"></i>
           <span
@@ -45,19 +43,18 @@
           >
         </a>
 
-        <!-- Mobile Menu Button -->
+    
         <button id="menu-btn" class="md:hidden">
           <i data-lucide="menu" class="w-7 h-7"></i>
         </button>
       </div>
 
-      <!-- Mobile Dropdown -->
       <div id="mobile-menu" class="hidden md:hidden border-t bg-white">
         <div class="flex flex-col p-4 gap-3 text-gray-700">
           <a href="index.html" class="flex items-center gap-2"><i></i> Home</a>
-          <a href="#" class="flex"><i></i> Shop</a>
-          <a href="#" class="flex"><i></i> About</a>
-          <a href="#" class="flex"><i></i> Contact</a>
+          <a href="./shop.html" class="flex"><i></i> Shop</a>
+          <a href="./about.html" class="flex"><i></i> About</a>
+          <a href="./contact.html" class="flex"><i></i> Contact</a>
         </div>
       </div>
     </nav>
@@ -67,7 +64,6 @@
     >
       <h3 class="font-bold text-2xl">Cart</h3>
 
-      <!-- Cart -->
       <main id="cart-container" class="max-w-4xl mx-auto p-8"></main>
     </section>
 

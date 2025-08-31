@@ -1,8 +1,6 @@
-// Toggle mobile menu
 document.getElementById("menu-btn").onclick = () =>
   document.getElementById("mobile-menu").classList.toggle("hidden");
 
-// Load existing cart from localStorage
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 updateCart(cart.length);
 
@@ -10,9 +8,10 @@ function updateCart(n) {
   document.querySelector("#cart-count").textContent = n;
 }
 
+
 lucide.createIcons();
 
-// Load products
+
 async function loadProducts() {
   const res = await fetch("https://fakestoreapi.com/products?limit=8");
   const products = await res.json();
@@ -48,21 +47,18 @@ async function loadProducts() {
   lucide.createIcons();
 }
 
-// Toggle add/remove product from cart
+
 function toggleCart(id, btn) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   if (cart.includes(id)) {
-    // remove product
     cart = cart.filter(item => item !== id);
-    // update button instantly
     btn.classList.remove("bg-red-500", "hover:bg-red-600");
     btn.classList.add("bg-black", "hover:bg-black/80");
     btn.innerHTML = `<i data-lucide="shopping-cart" class="mr-2"></i> Add to Cart`;
   } else {
-    // add product
+
     cart.push(id);
-    // update button instantly
     btn.classList.remove("bg-black", "hover:bg-black/80");
     btn.classList.add("bg-red-500", "hover:bg-red-600");
     btn.innerHTML = `<i data-lucide="shopping-cart" class="mr-2"></i> Remove from Cart`;
@@ -70,7 +66,38 @@ function toggleCart(id, btn) {
 
   localStorage.setItem("cart", JSON.stringify(cart));
   updateCart(cart.length);
-  lucide.createIcons(); // re-render icons inside the updated button
+  lucide.createIcons();
 }
 
 loadProducts();
+
+
+
+async function loadCategory() {
+      const res = await fetch("https://fakestoreapi.com/products/categories");
+      const categories = await res.json();
+
+      const container = document.getElementById("category-container");
+      container.innerHTML = categories.map(cat => `
+        <a href="category.html?category=${encodeURIComponent(cat)}" 
+           class="p-6 bg-white shadow rounded-xl text-center hover:shadow-lg transition">
+          <h2 class="font-semibold capitalize">${cat}</h2>
+        </a>
+      `).join("");
+    }
+    loadCategory();
+  
+    
+    function getCart() {
+      return JSON.parse(localStorage.getItem("cart")) || [];
+    }
+    function saveCart(cart) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartCount();
+    }
+    function updateCartCount() {
+      const cart = getCart();
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById("cart-count").textContent = count;
+    }
+    document.addEventListener("DOMContentLoaded", updateCartCount);

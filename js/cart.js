@@ -5,9 +5,17 @@
       return;
     }
 
-    // Fetch product details
-    const requests = cart.map(id => fetch(`https://fakestoreapi.com/products/${id}`).then(res => res.json()));
-    const products = await Promise.all(requests);
+    const requests = cart.map(id =>   fetch(`https://fakestoreapi.com/products/${id}`)
+    .then(res => {
+      if (!res.ok) throw new Error("Failed to fetch product");
+      return res.json();
+    })
+    .catch(err => {
+      console.error("Error loading product:", err);
+      return null;
+    }));
+   
+    const products = (await Promise.all(requests)).filter(p => p);
 
     let total = 0;
     document.getElementById("cart-container").innerHTML = `
